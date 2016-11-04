@@ -1,0 +1,118 @@
+Microsoft Windows [版本 6.1.7601]
+版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator>arp -a
+
+接口: 202.202.243.73 --- 0xa
+  Internet 地址         物理地址              类型
+  202.202.243.1         00-1a-a9-0e-c0-d7     动态
+  202.202.243.2         00-25-64-fd-32-ba     动态
+  202.202.243.71        b8-ae-ed-f7-cf-1b     动态
+  202.202.243.72        b8-ae-ed-f7-d4-f2     动态
+  202.202.243.74        b8-ae-ed-f7-d4-8d     动态
+  202.202.243.127       ff-ff-ff-ff-ff-ff     静态
+  224.0.0.22            01-00-5e-00-00-16     静态
+  224.0.0.251           01-00-5e-00-00-fb     静态
+  224.0.0.252           01-00-5e-00-00-fc     静态
+  226.81.9.8            01-00-5e-51-09-08     静态
+  227.75.171.123        01-00-5e-4b-ab-7b     静态
+  239.192.152.143       01-00-5e-40-98-8f     静态
+
+C:\Users\Administrator>ipconfig
+
+Windows IP 配置
+
+
+以太网适配器 本地连接:
+
+   连接特定的 DNS 后缀 . . . . . . . :
+   本地链接 IPv6 地址. . . . . . . . : fe80::18c7:c47d:77e0:6731%10
+   IPv4 地址 . . . . . . . . . . . . : 202.202.243.73
+   子网掩码  . . . . . . . . . . . . : 255.255.255.128
+   默认网关. . . . . . . . . . . . . : 202.202.243.1
+
+隧道适配器 isatap.{5BCD5D49-4309-4EAB-9278-31B726C3427A}:
+
+   媒体状态  . . . . . . . . . . . . : 媒体已断开
+   连接特定的 DNS 后缀 . . . . . . . :
+
+隧道适配器 6TO4 Adapter:
+
+   连接特定的 DNS 后缀 . . . . . . . :
+   IPv6 地址 . . . . . . . . . . . . : 2002:caca:f349::caca:f349
+   默认网关. . . . . . . . . . . . . : 2002:c058:6301::c058:6301
+
+C:\Users\Administrator>arp -s 202.202.243.1         00-1a-a9-0e-c0-d7
+ARP 项添加失败: 拒绝访问。
+
+
+C:\Users\Administrator>
+Microsoft Windows [版本 6.1.7601]
+版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator>netsh i i show in
+
+Idx     Met         MTU          状态                名称
+---  ----------  ----------  ------------  ---------------------------
+  1          50  4294967295  connected     Loopback Pseudo-Interface 1
+ 10          10        1500  connected     本地连接
+
+
+C:\Users\Administrator>netsh -c i i add neughbors 10 202.202.243.1         00-1a
+-a9-0e-c0-d7
+找不到下列命令: i add neughbors 10 202.202.243.1 00-1a-a9-0e-c0-d7。
+
+C:\Users\Administrator>netsh -c "i i" add neughbors "10 202.202.243.1"        "0
+0-1a-a9-0e-c0-d7"
+找不到下列命令: add neughbors "10 202.202.243.1" 00-1a-a9-0e-c0-d7。
+
+C:\Users\Administrator>netsh -c "i i" add neighbors "10 202.202.243.1"        "0
+0-1a-a9-0e-c0-d7"
+一个或多个重要的参数没有输入。
+请验证需要的参数，然后再次输入。
+此命令提供的语法不正确。请查看帮助以获取正确的语法信息。
+
+用法: add neighbors [interface=]<string> [address=]<IPv4 address>]
+             [neighbor=]<string> [[subinterface=]<string>]
+             [[store=]active|persistent]
+
+参数:
+
+       标记             值
+       interface      - 接口名称或索引。
+       address        - 邻居网络地址。
+       neighbor       - 邻居链接层地址。
+       subinterface   - 子接口的 LUID。此仅用于带有多个子接口的接口。
+       store          - 下列其中一个值:
+                        active: 地址将在下一次启动时出现。
+                        persistent: 地址持久有效。此为默认值。
+
+
+示例:
+
+       add neighbors "Private" "10.1.1.1" "12-34-56-78-9a-bc"
+
+
+
+C:\Users\Administrator>netsh -c i i add neighbors 10 202.202.243.1         00-1a
+-a9-0e-c0-d7
+
+
+C:\Users\Administrator>arp -a
+
+接口: 202.202.243.73 --- 0xa
+  Internet 地址         物理地址              类型
+  202.202.243.1         00-1a-a9-0e-c0-d7     静态
+  202.202.243.2         00-25-64-fd-32-ba     动态
+  202.202.243.71        b8-ae-ed-f7-cf-1b     动态
+  202.202.243.72        b8-ae-ed-f7-d4-f2     动态
+  202.202.243.74        b8-ae-ed-f7-d4-8d     动态
+  202.202.243.127       ff-ff-ff-ff-ff-ff     静态
+  224.0.0.22            01-00-5e-00-00-16     静态
+  224.0.0.251           01-00-5e-00-00-fb     静态
+  224.0.0.252           01-00-5e-00-00-fc     静态
+  226.81.9.8            01-00-5e-51-09-08     静态
+  227.75.171.123        01-00-5e-4b-ab-7b     静态
+  239.192.152.143       01-00-5e-40-98-8f     静态
+
+C:\Users\Administrator>
